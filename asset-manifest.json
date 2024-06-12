@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/spearmint/static/css/main.22a1aca2.css",
+    "main.js": "/spearmint/static/js/main.07b5bb0d.js",
+    "index.html": "/spearmint/index.html",
+    "main.22a1aca2.css.map": "/spearmint/static/css/main.22a1aca2.css.map",
+    "main.07b5bb0d.js.map": "/spearmint/static/js/main.07b5bb0d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22a1aca2.css",
+    "static/js/main.07b5bb0d.js"
+  ]
+}
