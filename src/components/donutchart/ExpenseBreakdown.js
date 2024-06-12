@@ -1,11 +1,11 @@
 // ExpenseBreakdown.js
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import {Chart, ArcElement, Tooltip, Legend} from 'chart.js'
+import {Chart, ArcElement, Tooltip} from 'chart.js'
 import { options } from '../../utils/chart_utils'
 
 const ExpenseBreakdown = ({ data }) => {
-    Chart.register(ArcElement, Tooltip, Legend);
+    Chart.register(ArcElement, Tooltip);
 
     if (!data || data.length === 0) {
         console.warn("No data available for expense breakdown.");
@@ -33,7 +33,7 @@ const ExpenseBreakdown = ({ data }) => {
     };
 
     return (
-        <div>
+        <div className="card-container">
             <Doughnut data={chartData} options={options}/>
         </div>
     );

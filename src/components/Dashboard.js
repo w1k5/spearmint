@@ -21,7 +21,7 @@ const Dashboard = ({ data }) => {
                 <h2>Expense Breakdown</h2>
                 <ExpenseBreakdown data={data.filter(entry => entry.Amount < 0)} />
             </div>
-            <div className="card">
+            <div className="card majority-card">
                 <h2>Data Table</h2>
                 <Table data={data} />
             </div>

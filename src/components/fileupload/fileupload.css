@@ -1,5 +1,5 @@
 .dropzone {
-    border: 2px dashed slategrey;
+    border: 2px dashed #474747;
     text-align: center;
     font-size: 18px;
     cursor: pointer;
@@ -9,7 +9,7 @@
 }
 
 .dropzone:hover {
-    background-color: slategrey;
+    background-color: #474747;
 }
 
 .dropzone p {
@@ -37,5 +37,5 @@ button {
 }
 
 button:hover {
-    background-color: slategrey;
+    background-color: #474747;
 }

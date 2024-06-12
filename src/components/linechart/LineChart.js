@@ -21,7 +21,7 @@ const LineChart = ({ data }) => {
     };
 
     return (
-        <div>
+        <div className="card-container">
             <Line data={chartData} options={options} width={4} height={1}/>
         </div>
     );
