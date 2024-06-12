@@ -7,7 +7,7 @@ const App = () => {
     return (
         <HashRouter>
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/spearmint/" element={<Home />} />
             </Routes>
         </HashRouter>
     );
