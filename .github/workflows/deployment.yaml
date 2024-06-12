@@ -27,14 +27,14 @@ jobs:
       - name: Build the app
         run: npm run build
         
-      - name: Copy public directory to dist
-        run: cp -r public/. dist/
+      - name: Copy public directory to build
+        run: cp -r public/. build/
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dist
-          path: dist
+          name: build
+          path: build
 
   deploy:
     needs: build
@@ -46,11 +46,11 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
-          name: dist
-          path: dist
+          name: build
+          path: build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
+          publish_dir: build
