@@ -22,7 +22,10 @@ jobs:
 
       - name: Build the app
         run: npm run build
-
+        
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
