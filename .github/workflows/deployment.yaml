@@ -30,6 +30,19 @@ jobs:
       - name: Build React app
         run: npm run build
 
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v3
         with:
