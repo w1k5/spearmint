@@ -1,7 +1,7 @@
 {
   "name": "finance-app",
   "version": "0.1.0",
-  "homepage": "https://wiks.wiki/spearmint",
+  "homepage": "https://w1k5.github.io/spearmint",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
