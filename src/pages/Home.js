@@ -39,25 +39,28 @@ const Home = () => {
             <h1>Dashboard Overview</h1>
             <div>
                 <h2>Upload Your Data</h2>
-                <FileUpload onFileUploaded={handleFileUploaded} />
+                <FileUpload onFileUploaded={handleFileUploaded}/>
             </div>
 
             <div>
                 <h2>Quick View: Reports</h2>
                 {loading ? (
-                    <DashboardSkeleton />
+                    <DashboardSkeleton/>
                 ) : data ? (
-                    <Dashboard data={data} />
+                    <Dashboard data={data}/>
                 ) : (
                     <>
                         <p>No data available. Please upload a file to view reports.</p>
-                        <DashboardSkeleton />
+                        <DashboardSkeleton/>
                     </>
                 )}
             </div>
 
             <button onClick={() => handleFileUploaded(testData)}>
                 Use Test Data
+            </button>
+            <button onClick={() => handleFileUploaded([])}>
+                Clear Data
             </button>
         </div>
     );
