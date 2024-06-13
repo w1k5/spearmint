@@ -27,5 +27,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          publish_branch: gh-pages  # Branch to push to, create if it doesn't exist
-          cname: wiks.wiki  # Optional: Custom domain if using one
+          publish_branch: gh-pages
+          cname: wiks.wiki

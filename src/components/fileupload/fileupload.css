@@ -25,17 +25,3 @@
 .upload-status p {
     margin: 0 0 10px;
 }
-
-button {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #474747;
-}

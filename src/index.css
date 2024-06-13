@@ -21,3 +21,20 @@ h1, h2, h3 {
     font-family: 'Arial', sans-serif;
     font-weight: bold;
 }
+
+button {
+    display: block;
+    margin: 10px auto;
+    background-color: #474747; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: white;
+    color: #474747;
+}
