@@ -1,14 +1,9 @@
 name: Deploy React App to GitHub Pages
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 on:
   push:
     branches:
-      - main  # Adjust this branch as per your main branch name
+      - main  # Change this to your main branch name
   workflow_dispatch:
 
 jobs:
@@ -16,44 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      - name: Install Dependencies
+        run: |
+          npm install
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build React app
-        run: npm run build
-
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: build
-
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: build
+      - name: Build React App
+        run: |
+          npm run build
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+          publish_branch: gh-pages  # Branch to push to, create if it doesn't exist
+          cname: wiks.wiki  # Optional: Custom domain if using one
