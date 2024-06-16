@@ -6,8 +6,7 @@
 }
 
 .card {
-    /* Example: Rounded edges for cards */
-    background: #333333; /* Gradient background */
+    background: #333333;
     flex: 1 1;
     padding: 2%;
     width: 100%;

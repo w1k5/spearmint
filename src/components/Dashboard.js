@@ -1,5 +1,5 @@
 // Dashboard.js
-import React from 'react';
+import React, {useEffect} from 'react';
 import LineChart from './linechart/LineChart';
 import Table from './table/Table';
 import ExpenseBreakdown from './donutchart/ExpenseBreakdown'; // Import the new component
@@ -10,6 +10,10 @@ const Dashboard = ({ data }) => {
             ...entry,
             Amount: Math.abs(entry.Amount) // Convert to positive
         }));
+
+    useEffect(() => {
+        // Trigger any chart re-rendering logic here if necessary
+    }, [data]);
 
     return (
         <div className="dashboard-container">
