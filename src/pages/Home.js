@@ -88,7 +88,7 @@ const Home = () => {
             </div>
 
             <div>
-                {(0 !== data.length) ? (<button onClick={() => setShowCategoryManager(true)}>Open Category Manager</button>) : <></>} <!-- todo: this feels bad -->
+                {(0 !== data.length) ? (<button onClick={() => setShowCategoryManager(true)}>Open Category Manager</button>) : <></>}
                 {showCategoryManager && (
                     <CategoryManager
                         headers={headers}
