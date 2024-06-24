@@ -102,6 +102,15 @@ const LineChart = ({ data }) => {
                             }).format(value);
                         }
                         return value;
+                    },
+                    title: function (context) {
+                        const dateStr = context[0].label;
+                        const date = new Date(dateStr);
+                        return new Intl.DateTimeFormat(context[0].chart.options.locale, {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                        }).format(date);
                     }
                 }
             },
