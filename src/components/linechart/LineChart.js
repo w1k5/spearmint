@@ -86,7 +86,7 @@ const LineChart = ({ data }) => {
                     },
                 },
                 ticks: {
-                    beginAtZero: true,
+                    beginAtZero: false,
                 },
             },
         },
