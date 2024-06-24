@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip } from 'chart.js';
-import { options } from '../../utils/chart_utils';
+import {formatAmount } from '../../utils/chart_utils';
 
 const ExpenseBreakdown = ({ data }) => {
     Chart.register(ArcElement, Tooltip);
@@ -46,6 +46,16 @@ const ExpenseBreakdown = ({ data }) => {
         setChartData(updatedChartData);
 
     }, [data]);
+
+    const options = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: formatAmount()
+                },
+            },
+        },
+    };
 
     return (
         <div className="card-container">

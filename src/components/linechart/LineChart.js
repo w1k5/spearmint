@@ -96,10 +96,7 @@ const LineChart = ({ data }) => {
                     label: function (context) {
                         let value = context.raw;
                         if (typeof value === 'number') {
-                            return new Intl.NumberFormat('en-US', {
-                                style: 'currency',
-                                currency: 'USD',
-                            }).format(value);
+                            return formatAmount(value);
                         }
                         return value;
                     },
