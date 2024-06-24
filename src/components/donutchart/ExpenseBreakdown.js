@@ -51,7 +51,11 @@ const ExpenseBreakdown = ({ data }) => {
         plugins: {
             tooltip: {
                 callbacks: {
-                    label: formatAmount()
+                    label: function (context) {
+                        if (context.raw !== null) {
+                            return formatAmount(context.raw);
+                        }
+                    },
                 },
             },
         },
