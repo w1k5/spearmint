@@ -1,20 +1,11 @@
 import React from 'react';
-import './table.css'; // Import your CSS file
+import './table.css';
+import { formatAmount } from "../../utils/chart_utils"; // Import your CSS file
 
 const Table = ({ data }) => {
     if (!data || data.length === 0) {
         return <p>No table data available.</p>;
     }
-
-    // Function to format amounts to USD
-    const formatAmount = (amount) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }).format(amount);
-    };
 
     return (
         <div className="table-container">
