@@ -1,3 +1,4 @@
+// Home.js
 import React, { useState } from 'react';
 import DashboardSkeleton from '../components/skeleton/DashboardSkeleton';
 import Dashboard from '../components/Dashboard';
@@ -52,6 +53,7 @@ const Home = () => {
     const handleSaveCategories = () => {
         const updatedData = applyCategories(data, categories);
         setData(updatedData);
+        setShowCategoryManager(false);
     };
 
     const applyCategories = (data, categories) => {
@@ -88,7 +90,9 @@ const Home = () => {
             </div>
 
             <div>
-                {(0 !== data.length) ? (<button onClick={() => setShowCategoryManager(true)}>Open Category Manager</button>) : <></>}
+                {data.length > 0 && (
+                    <button onClick={() => setShowCategoryManager(true)}>Open Category Manager</button>
+                )}
                 {showCategoryManager && (
                     <CategoryManager
                         headers={headers}
@@ -117,7 +121,7 @@ const Home = () => {
             <button onClick={() => handleFileUploaded(testData)}>
                 Use Test Data
             </button>
-            <button onClick={() => handleClearData()}>
+            <button onClick={handleClearData}>
                 Clear Data
             </button>
         </div>
