@@ -91,6 +91,20 @@ const LineChart = ({ data }) => {
             },
         },
         plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function (context) {
+                        let value = context.raw;
+                        if (typeof value === 'number') {
+                            return new Intl.NumberFormat('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                            }).format(value);
+                        }
+                        return value;
+                    }
+                }
+            },
             legend: {
                 display: false
             },
