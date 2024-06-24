@@ -6,6 +6,7 @@ import { options } from '../../utils/chart_utils'
 
 const LineChart = ({ data }) => {
     Chart.register(CategoryScale, LinearScale, LineElement, PointElement);
+    console.log("Line chart data: " + data)
     if (!data || data.length === 0) {
         return <p>No chart data available.</p>;
     }

@@ -1,4 +1,3 @@
-// FileUpload.js
 import './fileupload.css';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
@@ -9,19 +8,23 @@ const FileUpload = ({ onFileUploaded }) => {
     const [loading, setLoading] = useState(false);
     const [fileUploaded, setFileUploaded] = useState(false);
 
+    // Define a mapping for relevant headers and their possible variations
+    const headerMapping = {
+        Date: ["Date", "Posting Date", "Transaction Date", "Transaction DateTime"],
+        Description: ["Description", "Details", "Memo", "Narrative"],
+        Amount: ["Amount", "Transaction Amount", "Credit Amount", "Debit Amount"]
+    };
+
     const handleCSVFile = (file) => {
         Papa.parse(file, {
             header: true,
             skipEmptyLines: true,
+            dynamicTyping: true,
             complete: (results) => {
-                console.log("Parsed CSV Data:", results.data);
-                if (results.errors.length > 0) {
-                    console.error("CSV parsing errors:", results.errors);
-                    alert("Error parsing CSV file. Please check the file format.");
-                    setLoading(false);
-                    return;
-                }
-                onFileUploaded(results.data);
+                const parsedData = results.data.map(row => {
+                    return extractRelevantData(row);
+                });
+                onFileUploaded(parsedData);
                 setLoading(false);
                 setFileUploaded(true);
             },
@@ -33,6 +36,15 @@ const FileUpload = ({ onFileUploaded }) => {
         });
     };
 
+    const extractRelevantData = (row) => {
+        const relevantData = {};
+        Object.keys(headerMapping).forEach(key => {
+            const matchedHeader = headerMapping[key].find(header => row.hasOwnProperty(header));
+            relevantData[key] = matchedHeader ? row[matchedHeader] : null;
+        });
+        return relevantData;
+    };
+
     const handleExcelFile = (file) => {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -41,13 +53,13 @@ const FileUpload = ({ onFileUploaded }) => {
             const firstSheet = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[firstSheet];
             const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-            console.log("Parsed Excel Data:", data);
 
             const [header, ...rows] = data;
             const parsedData = rows.map(row => {
                 let rowObject = {};
-                header.forEach((key, index) => {
-                    rowObject[key] = row[index];
+                Object.keys(headerMapping).forEach(key => {
+                    const matchedHeader = headerMapping[key].find(h => header.includes(h));
+                    rowObject[key] = matchedHeader ? row[header.indexOf(matchedHeader)] : null;
                 });
                 return rowObject;
             });

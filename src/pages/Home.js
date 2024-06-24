@@ -23,6 +23,7 @@ const Home = () => {
         { Date: '2024-01-09', Amount: -50, Category: 'Shopping', Description: 'Clothing' },
         { Date: '2024-01-10', Amount: -5, Category: 'Transportation', Description: 'Taxi' },
     ];
+
     const handleFileUploaded = (fileData) => {
         setLoading(true);
 
@@ -68,7 +69,6 @@ const Home = () => {
                         return item[cat.selectedHeader].toLowerCase().includes(cat.stringMatch.toLowerCase());
                 }
             });
-
             return matchedCategory ? { ...item, Category: matchedCategory.newCategory } : item;
         });
     };

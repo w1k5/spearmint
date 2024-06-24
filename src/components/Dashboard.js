@@ -9,7 +9,8 @@ const Dashboard = ({ data }) => {
     const expenses = data.filter(entry => entry.Amount < 0).map(entry => ({
             ...entry,
             Amount: Math.abs(entry.Amount) // Convert to positive
-        }));
+        }
+        ));
 
     useEffect(() => {
         // Trigger any chart re-rendering logic here if necessary
