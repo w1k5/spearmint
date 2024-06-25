@@ -5,7 +5,7 @@
     border-radius: 8px;
     background-color: #f9f9f9;
     margin: 1rem;
-    overflow: hidden; /* Prevents the container from growing beyond its intended size */
+    overflow: hidden;
 }
 
 .chart-controls {
@@ -28,5 +28,6 @@
 }
 
 .chart-wrapper {
-
+    min-height: 30vh;
+    max-height: 40vh;
 }

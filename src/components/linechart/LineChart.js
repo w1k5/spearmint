@@ -61,7 +61,7 @@ const LineChart = ({ data }) => {
 
     const chartOptions = {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         scales: {
             x: {
                 title: {
