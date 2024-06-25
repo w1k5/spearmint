@@ -75,7 +75,7 @@ const LineChart = ({ data }) => {
                     autoSkip: true,
                     maxTicksLimit: 10,
                 },
-                reverse: true,
+		    reverse: false,
             },
             y: {
                 title: {
