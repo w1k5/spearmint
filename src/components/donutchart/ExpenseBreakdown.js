@@ -48,6 +48,8 @@ const ExpenseBreakdown = ({ data }) => {
     }, [data]);
 
     const options = {
+        responsive: true,
+        maintainAspectRatio: true,
         plugins: {
             tooltip: {
                 callbacks: {
@@ -62,7 +64,7 @@ const ExpenseBreakdown = ({ data }) => {
     };
 
     return (
-        <div className="card-container">
+        <div className="chart-wrapper">
             <Doughnut key={JSON.stringify(chartData)} data={chartData} options={options} />
         </div>
     );

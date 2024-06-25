@@ -6,5 +6,5 @@ This is a simple expense tracker app built with React. It allows users to upload
 
 ## Getting Started
 1. Install dependencies using ```npm install```
-2. Start the development server using ```npx react-scripts start```
+2. Start the development server using ```npx react-scripts start``` or ```npm run start```
 3. Open http://localhost:3000 to view the app in your browser.
