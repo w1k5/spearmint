@@ -17,16 +17,9 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-
       - name: Build React App
         run: |
           npm run build
-
-  push-to-gh-pages:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
