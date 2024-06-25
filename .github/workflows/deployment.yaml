@@ -23,6 +23,7 @@ jobs:
           npm run build
 
   push-to-gh-pages:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
