@@ -4,7 +4,6 @@ import LineChart from './linechart/LineChart';
 import Table from './table/Table';
 import ExpenseBreakdown from './donutchart/ExpenseBreakdown';
 import Modal from '../components/modal/Modal'; // Import Modal component
-import './dashboard.css'; // Import CSS file for styling
 
 const Dashboard = ({ data }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);

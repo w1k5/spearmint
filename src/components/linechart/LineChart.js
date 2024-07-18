@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 import annotationPlugin from 'chartjs-plugin-annotation'
 import { CategoryScale, LinearScale, PointElement, LineElement, Chart, Title, Tooltip, Legend } from 'chart.js';
 import {formatAmount, groupBy} from '../../utils/chart_utils';
-import './linechart.css';
+import styles from '../../styles/linechart.module.css';
 
 const LineChart = ({ data }) => {
     Chart.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend, annotationPlugin);
@@ -136,8 +136,8 @@ const LineChart = ({ data }) => {
     };
 
     return (
-        <div className="line-chart-container">
-            <div className="chart-controls">
+        <div className={styles.lineChartContainer}>
+            <div className={styles.chartControls}>
                 <label htmlFor="time-interval">Select Time Interval:</label>
                 <select id="time-interval" value={timeInterval} onChange={handleIntervalChange}>
                     <option value="daily">Daily</option>
@@ -149,7 +149,7 @@ const LineChart = ({ data }) => {
             {chartData.labels.length === 0 ? (
                 <p>No chart data available.</p>
             ) : (
-                <div className="chart-wrapper">
+                <div className={styles.chartWrapper}>
                     <Line data={chartData} options={chartOptions} />
                 </div>
             )}

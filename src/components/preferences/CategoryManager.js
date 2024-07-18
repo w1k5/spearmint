@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CategoryForm from './CategoryForm';
-import './categorymanager.css'; // Import your CSS file for styling
+import styles from '../../styles/categorymanager.module.css'; // Import your CSS file for styling
 
 const CategoryManager = ({ headers, categories, onCategoryCreate, onClose, onSave }) => {
     const [showAddCategory, setShowAddCategory] = useState(false);
@@ -16,12 +16,12 @@ const CategoryManager = ({ headers, categories, onCategoryCreate, onClose, onSav
     };
 
     return (
-        <div className="category-manager-container">
-            <div className="category-manager">
+        <div className={styles.categoryManagerContainer}>
+            <div className={styles.categoryManager}>
                 <h2>Manage Categories</h2>
-                <div className="category-list">
+                <div className={styles.categoryList}>
                     {categories.map((category, index) => (
-                        <div key={index} className="category-item">
+                        <div key={index} className={styles.categoryItem}>
                             <span>{category.newCategory}: {category.selectedHeader} {category.matchType} {category.stringMatch}</span>
                         </div>
                     ))}
@@ -34,7 +34,7 @@ const CategoryManager = ({ headers, categories, onCategoryCreate, onClose, onSav
                 ) : (
                     <button onClick={() => setShowAddCategory(true)}>Add Category</button>
                 )}
-                <div className="category-manager-buttons">
+                <div className={styles.categoryManagerButtons}>
                     <button onClick={onClose}>Close & Cancel</button>
                     <button onClick={handleSave}>Save</button>
                 </div>

@@ -1,4 +1,4 @@
-import './fileupload.css';
+import styles from '../../styles/fileupload.module.css';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Papa from 'papaparse';
@@ -102,7 +102,7 @@ const FileUpload = ({ onFileUploaded }) => {
     return (
         <div>
             {!fileUploaded ? (
-                <div {...getRootProps()} className="dropzone">
+                <div {...getRootProps()} className={styles.dropzone}>
                     <input {...getInputProps()} />
                     {loading ? (
                         <h1>Uploading...</h1>
@@ -111,7 +111,7 @@ const FileUpload = ({ onFileUploaded }) => {
                     )}
                 </div>
             ) : (
-                <div className="upload-status">
+                <div className={styles.uploadStatus}>
                     <h1>File uploaded successfully.</h1>
                     <button onClick={resetUpload}>Clear data</button>
                 </div>

@@ -1,24 +1,24 @@
-.table-container {
+.tableContainer {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.table {
+.tableContents {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     border-radius: 10px;
 }
 
-.table th, .table td {
+.tableTh, .tableTd {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd; /* Add border to separate rows */
 }
 
 @media screen and (max-width: 600px) {
-    .table-container {
+    .tableContainer {
         font-size: xx-small;
     }
 }

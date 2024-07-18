@@ -1,6 +1,6 @@
 // DashboardSkeleton.js
 import React from 'react';
-import './skeleton.css';
+import '../../styles/skeleton.module.css';
 
 const DashboardSkeleton = () => {
     return (

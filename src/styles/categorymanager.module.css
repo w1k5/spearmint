@@ -1,4 +1,4 @@
-.category-manager-container {
+.categoryManagerContainer {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.category-manager {
+.categoryManager {
     background-color: #333333;
     padding: 20px;
     width: 80%;
@@ -19,17 +19,17 @@
     text-align: center;
 }
 
-.category-list {
+.categoryList {
     margin-bottom: 20px;
     max-height: 300px; /* Example height; adjust as needed */
     overflow-y: auto;
 }
 
-.category-item {
+.categoryItem {
     margin-bottom: 10px;
 }
 
-.category-manager-buttons {
+.categoryManagerButtons {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
