@@ -21,11 +21,10 @@ jobs:
       - name: Build Next.js App
         run: |
           npm run build
-          npm run export
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out  # Next.js export places the static files in the out directory
+          publish_dir: ./out  # Next.js will place the static files in the out directory based on your next.config.js
           publish_branch: gh-pages
