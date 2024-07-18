@@ -26,5 +26,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build  # Next.js will place the static files in the out directory based on your next.config.js
+          publish_dir: ./build ./.next # Next.js will place the static files in the out directory based on your next.config.js
           publish_branch: gh-pages
