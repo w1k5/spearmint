@@ -149,7 +149,7 @@ const LineChart = ({ data }) => {
             {chartData.labels.length === 0 ? (
                 <p>No chart data available.</p>
             ) : (
-                <div className={styles.chartWrapper}>
+                <div className="chart-wrapper">
                     <Line data={chartData} options={chartOptions} />
                 </div>
             )}

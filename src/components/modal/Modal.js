@@ -1,12 +1,12 @@
 // Modal.js
 import React from 'react';
-import '../../styles/modal.module.css'; // Import modal CSS
+import styles from '../../styles/modal.module.css'; // Import modal CSS
 
 const Modal = ({ children, onClose }) => {
     return (
-        <div className="modal-backdrop" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <button className="modal-close" onClick={onClose}>Χ</button>
+        <div className={styles.modalBackdrop} onClick={onClose}>
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                <button className={styles.modalClose} onClick={onClose}>Χ</button>
                 {children}
             </div>
         </div>

@@ -43,6 +43,14 @@
     cursor: pointer;
 }
 
+.chart-wrapper {
+    min-height: 30vh;
+    max-height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Media Query for narrow screens */
 @media screen and (max-width: 600px) {
     .card, .full-width-card, .majority-card {
