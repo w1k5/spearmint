@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import {Doughnut, Line} from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip } from 'chart.js';
 import {formatAmount } from '../../utils/chart_utils';
 
@@ -10,7 +10,6 @@ const ExpenseBreakdown = ({ data }) => {
 
     useEffect(() => {
         if (!data || data.length === 0) {
-            console.warn("No data available for expense breakdown.");
             setChartData({ labels: [], datasets: [] });
             return;
         }
@@ -65,7 +64,13 @@ const ExpenseBreakdown = ({ data }) => {
 
     return (
         <div className="chart-wrapper">
-            <Doughnut key={JSON.stringify(chartData)} data={chartData} options={options} />
+            {chartData.labels.length === 0 ? (
+                <p>No expenses from chart data available.</p>
+            ) : (
+                <div className="chart-wrapper">
+                    <Doughnut key={JSON.stringify(chartData)} data={chartData} options={options} />
+                </div>
+            )}
         </div>
     );
 };
