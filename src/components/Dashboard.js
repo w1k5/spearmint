@@ -31,9 +31,9 @@ const Dashboard = ({ data }) => {
             <div className="card majority-card" onClick={() => setIsModalOpen(true)}>
                 <h2>Data Table</h2>
                 <div className="table-container">
-                    <Table data={data} />
-                    <div className="table-overlay" />
+                    <Table data={data}/>
                 </div>
+                <div className="card-overlay"/>
             </div>
             {isModalOpen && (
                 <Modal onClose={() => setIsModalOpen(false)}>

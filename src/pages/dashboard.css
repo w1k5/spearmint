@@ -33,7 +33,7 @@
     width: 100%;
 }
 
-.table-overlay {
+.card-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -41,6 +41,10 @@
     height: 20vh;
     background: linear-gradient(transparent, #333333);
     cursor: pointer;
+}
+
+.card-overlay:hover {
+    background: linear-gradient(transparent, #555555);
 }
 
 .chart-wrapper {
