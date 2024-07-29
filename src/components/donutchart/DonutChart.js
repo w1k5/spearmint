@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {Doughnut, Line} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip } from 'chart.js';
 import {formatAmount } from '../../utils/chart_utils';
 
-const ExpenseBreakdown = ({ data }) => {
+const DonutChart = ({ data }) => {
     Chart.register(ArcElement, Tooltip);
 
     const [chartData, setChartData] = useState({ labels: [], datasets: [] });
@@ -17,7 +17,7 @@ const ExpenseBreakdown = ({ data }) => {
         // Aggregate data by category
         const categoryTotals = data.reduce((acc, entry) => {
             const category = entry.Category || 'Uncategorized';
-            const value = -parseFloat(entry.Amount); // Assuming Amount is negative for expenses
+            const value = parseFloat(entry.Amount); // Assuming Amount is negative for expenses
             if (!acc[category]) {
                 acc[category] = 0;
             }
@@ -75,4 +75,4 @@ const ExpenseBreakdown = ({ data }) => {
     );
 };
 
-export default ExpenseBreakdown;
+export default DonutChart;

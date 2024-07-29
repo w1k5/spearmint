@@ -22,8 +22,7 @@
 }
 
 .majority-card {
-    flex: 1 1 25%;
-    position: relative;
+    flex: 1 1 45%;
     overflow: hidden; /* Hide overflow */
 }
 
@@ -33,18 +32,21 @@
     width: 100%;
 }
 
-.card-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 20vh;
-    background: linear-gradient(transparent, #333333);
+.clickable-card {
     cursor: pointer;
+    transition: transform 1s, box-shadow 1s;
 }
 
-.card-overlay:hover {
-    background: linear-gradient(transparent, #555555);
+.clickable-card:hover, .clickable-card:active, .clickable-card.touch-active {
+    transform: scale(1.05);
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (hover: none) {
+    .clickable-card:active {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 }
 
 .chart-wrapper {

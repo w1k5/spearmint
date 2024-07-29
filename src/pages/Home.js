@@ -13,7 +13,6 @@ const Home = () => {
     const [showCategoryManager, setShowCategoryManager] = useState(false);
 
     const testData = [
-        { Date: '2024-01-01', Amount: 50, Category: 'Groceries', Description: 'Supermarket' },
         { Date: '2024-01-02', Amount: -30, Category: 'Transportation', Description: 'Bus fare' },
         { Date: '2024-01-03', Amount: -100, Category: 'Entertainment', Description: 'Concert tickets' },
         { Date: '2024-01-04', Amount: 2000, Category: 'Salary', Description: 'Monthly salary' },
@@ -23,6 +22,7 @@ const Home = () => {
         { Date: '2024-01-08', Amount: 100, Category: 'Gift', Description: 'Gift from friend' },
         { Date: '2024-01-09', Amount: -50, Category: 'Shopping', Description: 'Clothing' },
         { Date: '2024-01-10', Amount: -5, Category: 'Transportation', Description: 'Taxi' },
+        { Date: '2024-01-01', Amount: -50, Category: 'Groceries', Description: 'Supermarket' }
     ];
 
     const handleFileUploaded = (fileData) => {
