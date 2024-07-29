@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CategoryForm from './CategoryForm';
-import styles from '../../styles/categorymanager.module.css'; // Import your CSS file for styling
+import styles from '../../styles/categorymanager.module.css';
+import Modal from "../modal/Modal"; // Import your CSS file for styling
 
 const CategoryManager = ({ headers, categories, onCategoryCreate, onClose, onSave }) => {
     const [showAddCategory, setShowAddCategory] = useState(false);
@@ -16,8 +17,8 @@ const CategoryManager = ({ headers, categories, onCategoryCreate, onClose, onSav
     };
 
     return (
-        <div className={styles.categoryManagerContainer}>
-            <div className={styles.categoryManager}>
+        <Modal onClose={onClose}>
+            <div>
                 <h2>Manage Categories</h2>
                 <div className={styles.categoryList}>
                     {categories.map((category, index) => (
@@ -39,7 +40,7 @@ const CategoryManager = ({ headers, categories, onCategoryCreate, onClose, onSav
                     <button onClick={handleSave}>Save</button>
                 </div>
             </div>
-        </div>
+        </Modal>
     );
 };
 
