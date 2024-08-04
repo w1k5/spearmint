@@ -4,7 +4,7 @@ import styles from '../../styles/categorymanager.module.css';
 import Modal from "../modal/Modal";
 import { saveCategory, getCategories, clearCategories } from '../db_utils';
 
-const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave }) => {
+const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave, onUpload }) => {
     const [showAddCategory, setShowAddCategory] = useState(false);
     const [categories, setCategories] = useState([]);
 
@@ -53,6 +53,7 @@ const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave }) => {
             reader.onload = (e) => {
                 try {
                     const importedCategories = JSON.parse(e.target.result);
+                    setCategories(importedCategories)
                     onUpload(importedCategories);
                 } catch (error) {
                     console.error('Failed to load categories:', error);

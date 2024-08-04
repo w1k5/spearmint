@@ -13,7 +13,6 @@ const Home = () => {
     const [showCategoryManager, setShowCategoryManager] = useState(false);
 
     useEffect(() => {
-        // Load categories from IndexedDB on component mount
         const loadCategories = async () => {
             const storedCategories = await getCategories();
             setCategories(storedCategories);
@@ -100,6 +99,14 @@ const Home = () => {
         setHeaders([]);
     };
 
+    const handleUploadSettings = (importedCategories) => {
+        setCategories(importedCategories);
+
+        // Update data with new categories
+        const updatedData = applyCategories(data, importedCategories);
+        setData(updatedData);
+    };
+
     return (
         <div>
             <h1>Dashboard Overview</h1>
@@ -119,6 +126,7 @@ const Home = () => {
                         onCategoryCreate={handleCategoryCreate}
                         onClose={() => setShowCategoryManager(false)}
                         onSave={handleSaveCategories}
+                        onUpload={handleUploadSettings}
                     />
                 )}
             </div>
