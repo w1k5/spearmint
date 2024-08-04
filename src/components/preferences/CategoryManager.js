@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CategoryForm from './CategoryForm';
 import styles from '../../styles/categorymanager.module.css';
-import Modal from "../modal/Modal"; // Import your CSS file for styling
+import Modal from "../modal/Modal";
+import { saveCategory, getCategories, clearCategories } from "../db_utils";
 
-const CategoryManager = ({ headers, categories, onCategoryCreate, onClose, onSave }) => {
+const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave }) => {
     const [showAddCategory, setShowAddCategory] = useState(false);
+    const [categories, setCategories] = useState([]);
 
-    const handleCategoryCreate = (newCategory, stringMatch, matchType, selectedHeader) => {
+    useEffect(() => {
+        const loadCategories = async () => {
+            const loadedCategories = await getCategories();
+            setCategories(loadedCategories);
+        };
+        loadCategories();
+    }, []);
+
+    const handleCategoryCreate = async (newCategory, stringMatch, matchType, selectedHeader) => {
+        const newCat = { newCategory, stringMatch, matchType, selectedHeader };
+        await saveCategory(newCat);
+        setCategories([...categories, newCat]);
         onCategoryCreate(newCategory, stringMatch, matchType, selectedHeader);
         setShowAddCategory(false); // Close add category form after creation
     };
@@ -14,6 +27,11 @@ const CategoryManager = ({ headers, categories, onCategoryCreate, onClose, onSav
     const handleSave = () => {
         onSave(); // Trigger save callback
         onClose(); // Close the manager
+    };
+
+    const handleClear = async () => {
+        await clearCategories();
+        setCategories([]);
     };
 
     return (
@@ -38,6 +56,7 @@ const CategoryManager = ({ headers, categories, onCategoryCreate, onClose, onSav
                 <div className={styles.categoryManagerButtons}>
                     <button onClick={onClose}>Close & Cancel</button>
                     <button onClick={handleSave}>Save</button>
+                    <button onClick={handleClear}>Clear All</button>
                 </div>
             </div>
         </Modal>

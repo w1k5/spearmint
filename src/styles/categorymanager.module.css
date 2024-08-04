@@ -13,3 +13,7 @@
     justify-content: flex-end;
     margin-top: 20px;
 }
+
+.categoryManagerButtons button {
+    width: 16vw;
+}
