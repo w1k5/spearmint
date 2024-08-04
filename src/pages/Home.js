@@ -1,9 +1,9 @@
-// Home.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DashboardSkeleton from '../components/skeleton/DashboardSkeleton';
 import Dashboard from '../components/Dashboard';
 import FileUpload from '../components/fileupload/FileUpload';
 import CategoryManager from '../components/preferences/CategoryManager';
+import { getCategories, saveCategory } from '../components/db_utils'; // Import your IndexedDB utility functions
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -12,18 +12,30 @@ const Home = () => {
     const [headers, setHeaders] = useState([]);
     const [showCategoryManager, setShowCategoryManager] = useState(false);
 
+    useEffect(() => {
+        // Load categories from IndexedDB on component mount
+        const loadCategories = async () => {
+            const storedCategories = await getCategories();
+            setCategories(storedCategories);
+        };
+
+        loadCategories();
+    }, []);
+
     const testData = [
-        { Date: '2024-01-02', Amount: -30, Category: 'Transportation', Description: 'Bus fare' },
-        { Date: '2024-01-03', Amount: -100, Category: 'Entertainment', Description: 'Concert tickets' },
-        { Date: '2024-01-04', Amount: 2000, Category: 'Salary', Description: 'Monthly salary' },
-        { Date: '2024-01-05', Amount: -150, Category: 'Rent', Description: 'Monthly rent' },
-        { Date: '2024-01-06', Amount: -20, Category: 'Utilities', Description: 'Electricity bill' },
-        { Date: '2024-01-07', Amount: -10, Category: 'Food', Description: 'Fast food' },
-        { Date: '2024-01-08', Amount: 100, Category: 'Gift', Description: 'Gift from friend' },
-        { Date: '2024-01-09', Amount: -50, Category: 'Shopping', Description: 'Clothing' },
-        { Date: '2024-01-10', Amount: -5, Category: 'Transportation', Description: 'Taxi' },
-        { Date: '2024-01-01', Amount: -50, Category: 'Groceries', Description: 'Supermarket' }
+        { Date: '2024-01-02', Amount: -30, Category: 'Transportation', Description: 'Bus fare', Ignore: false },
+        { Date: '2024-01-03', Amount: -100, Category: 'Entertainment', Description: 'Concert tickets', Ignore: false },
+        { Date: '2024-01-04', Amount: 2000, Category: 'Salary', Description: 'Monthly salary', Ignore: false },
+        { Date: '2024-01-05', Amount: -150, Category: 'Rent', Description: 'Monthly rent', Ignore: false },
+        { Date: '2024-01-06', Amount: -20, Category: 'Utilities', Description: 'Electricity bill', Ignore: false },
+        { Date: '2024-01-07', Amount: -10, Category: 'Food', Description: 'Fast food', Ignore: false },
+        { Date: '2024-01-08', Amount: 100, Category: 'Gift', Description: 'Gift from friend', Ignore: false },
+        { Date: '2024-01-09', Amount: -50, Category: 'Shopping', Description: 'Clothing', Ignore: false },
+        { Date: '2024-01-10', Amount: -5, Category: 'Transportation', Description: 'Taxi', Ignore: false },
+        { Date: '2024-01-01', Amount: -50, Category: 'Groceries', Description: 'Supermarket', Ignore: false }
     ];
+
+    const includedEntries = data.filter(entry => !entry.Ignore);
 
     const handleFileUploaded = (fileData) => {
         setLoading(true);
@@ -43,11 +55,18 @@ const Home = () => {
         setLoading(false);
     };
 
-    const handleCategoryCreate = (newCategory, stringMatch, matchType, selectedHeader) => {
+    const handleCategoryCreate = async (newCategory, stringMatch, matchType, selectedHeader, ignore) => {
         if (!newCategory || !stringMatch || !matchType || !selectedHeader) return;
 
-        const updatedCategories = [...categories, { newCategory, stringMatch, matchType, selectedHeader }];
+        const newCategoryObj = { newCategory, stringMatch, matchType, selectedHeader, ignore };
+        const updatedCategories = [...categories, newCategoryObj];
         setCategories(updatedCategories);
+
+        // Save new category to IndexedDB
+        await saveCategory(newCategoryObj);
+
+        const updatedData = applyCategories(data, updatedCategories);
+        setData(updatedData);
     };
 
     const handleSaveCategories = () => {
@@ -71,7 +90,7 @@ const Home = () => {
                         return item[cat.selectedHeader].toLowerCase().includes(cat.stringMatch.toLowerCase());
                 }
             });
-            return matchedCategory ? { ...item, Category: matchedCategory.newCategory } : item;
+            return matchedCategory ? { ...item, Category: matchedCategory.newCategory, Ignore: matchedCategory.ignore } : item;
         });
     };
 
@@ -109,7 +128,7 @@ const Home = () => {
                 {loading ? (
                     <DashboardSkeleton />
                 ) : data.length ? (
-                    <Dashboard data={data} />
+                    <Dashboard data={includedEntries} />
                 ) : (
                     <>
                         <p>No data available. Please upload a file to view reports.</p>

@@ -8,13 +8,13 @@ import Modal from '../components/modal/Modal'; // Import Modal component
 const Dashboard = ({ data }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const expenses = data.filter(entry => entry.Amount < 0).map(entry => ({
+    const expenses = data.filter(entry => entry.Amount < 0 && !entry.Ignore ).map(entry => ({
             ...entry,
             Amount: Math.abs(entry.Amount)
         }
     ));
 
-    const income = data.filter(entry => entry.Amount > 0).map(entry => ({
+    const income = data.filter(entry => entry.Amount > 0 && !entry.Ignore).map(entry => ({
             ...entry,
             Amount: Math.abs(entry.Amount)
         }

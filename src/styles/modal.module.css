@@ -1,5 +1,6 @@
 /* modal.module.css */
 .modalBackdrop {
+    z-index: 1001;
     position: fixed;
     top: 0;
     left: 0;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CategoryForm from './CategoryForm';
 import styles from '../../styles/categorymanager.module.css';
 import Modal from "../modal/Modal";
-import { saveCategory, getCategories, clearCategories } from "../db_utils";
+import { saveCategory, getCategories, clearCategories } from '../db_utils';
 
 const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave }) => {
     const [showAddCategory, setShowAddCategory] = useState(false);
@@ -16,11 +16,11 @@ const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave }) => {
         loadCategories();
     }, []);
 
-    const handleCategoryCreate = async (newCategory, stringMatch, matchType, selectedHeader) => {
-        const newCat = { newCategory, stringMatch, matchType, selectedHeader };
+    const handleCategoryCreate = async (newCategory, stringMatch, matchType, selectedHeader, ignore) => {
+        const newCat = { newCategory, stringMatch, matchType, selectedHeader, ignore };
         await saveCategory(newCat);
         setCategories([...categories, newCat]);
-        onCategoryCreate(newCategory, stringMatch, matchType, selectedHeader);
+        onCategoryCreate(newCategory, stringMatch, matchType, selectedHeader, ignore);
         setShowAddCategory(false); // Close add category form after creation
     };
 
@@ -41,7 +41,7 @@ const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave }) => {
                 <div className={styles.categoryList}>
                     {categories.map((category, index) => (
                         <div key={index} className={styles.categoryItem}>
-                            <span>{category.newCategory}: {category.selectedHeader} {category.matchType} {category.stringMatch}</span>
+                            <span>{category.newCategory}: {category.selectedHeader} {category.matchType} {category.stringMatch} (Ignore: {category.ignore ? 'Yes' : 'No'})</span>
                         </div>
                     ))}
                 </div>

@@ -12,7 +12,8 @@ const FileUpload = ({ onFileUploaded }) => {
     const headerMapping = {
         Date: ["Date", "Posting Date", "Transaction Date", "Transaction DateTime"],
         Description: ["Description", "Details", "Memo", "Narrative"],
-        Amount: ["Amount", "Transaction Amount", "Credit Amount", "Debit Amount"]
+        Amount: ["Amount", "Transaction Amount", "Credit Amount", "Debit Amount"],
+        Ignore: ["Ignore"]
     };
 
     const handleCSVFile = (file) => {
@@ -40,7 +41,7 @@ const FileUpload = ({ onFileUploaded }) => {
         const relevantData = {};
         Object.keys(headerMapping).forEach(key => {
             const matchedHeader = headerMapping[key].find(header => row.hasOwnProperty(header));
-            relevantData[key] = matchedHeader ? row[matchedHeader] : null;
+            relevantData[key] = matchedHeader ? row[matchedHeader] : false;
         });
         return relevantData;
     };

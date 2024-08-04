@@ -3,15 +3,17 @@ import React, { useState } from 'react';
 const CategoryForm = ({ headers, onCategoryCreate }) => {
     const [newCategory, setNewCategory] = useState('');
     const [stringMatch, setStringMatch] = useState('');
-    const [matchType, setMatchType] = useState('contains'); // Default matching type
-    const [selectedHeader, setSelectedHeader] = useState(headers[0]); // Default selected header
+    const [matchType, setMatchType] = useState('contains');
+    const [selectedHeader, setSelectedHeader] = useState(headers[0]);
+    const [ignore, setIgnore] = useState(false);
 
     const handleCategoryCreation = () => {
-        onCategoryCreate(newCategory, stringMatch, matchType, selectedHeader);
-        setNewCategory('');
+        onCategoryCreate(newCategory, stringMatch, matchType, selectedHeader, ignore);
+        setNewCategory('Unnamed category');
         setStringMatch('');
         setMatchType('contains'); // Reset to default after creation
         setSelectedHeader(headers[0]); // Reset to default after creation
+        setIgnore(false);
     };
 
     return (
@@ -39,6 +41,11 @@ const CategoryForm = ({ headers, onCategoryCreate }) => {
                 value={newCategory}
                 onChange={(e) => setNewCategory(e.target.value)}
                 placeholder="Enter new category"
+            />
+            Ignore?
+            <input type="checkbox"
+                   checked={ignore}
+                   onChange={(e) => setIgnore(e.target.checked)}
             />
             <button onClick={handleCategoryCreation}>Confirm New Category</button>
         </div>
