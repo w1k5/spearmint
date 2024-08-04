@@ -34,6 +34,34 @@ const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave }) => {
         setCategories([]);
     };
 
+    const handleDownloadSettings = () => {
+        const dataStr = JSON.stringify(categories);
+        const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+
+        const downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute('href', dataUri);
+        downloadAnchorNode.setAttribute('download', 'category_manager_settings.json');
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    };
+
+    const handleUploadSettings = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const importedCategories = JSON.parse(e.target.result);
+                    onUpload(importedCategories);
+                } catch (error) {
+                    console.error('Failed to load categories:', error);
+                }
+            };
+            reader.readAsText(file);
+        }
+    };
+
     return (
         <Modal onClose={onClose}>
             <div>
@@ -57,6 +85,19 @@ const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave }) => {
                     <button onClick={onClose}>Close & Cancel</button>
                     <button onClick={handleSave}>Save</button>
                     <button onClick={handleClear}>Clear All</button>
+                </div>
+                <div className={styles.categoryManagerButtons}>
+                    <button onClick={handleDownloadSettings}>Download Settings</button>
+                    <input
+                        type="file"
+                        accept="application/json"
+                        onChange={handleUploadSettings}
+                        style={{display: 'none'}}
+                        id="uploadSettings"
+                    />
+                    <label htmlFor="uploadSettings" className={styles.uploadButton}>
+                        Upload Settings
+                    </label>
                 </div>
             </div>
         </Modal>
