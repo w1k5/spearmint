@@ -108,7 +108,7 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div className="body-container">
             <h1>Dashboard Overview</h1>
             <div>
                 <h2>Upload Your Data</h2>

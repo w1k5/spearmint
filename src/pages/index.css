@@ -1,14 +1,15 @@
-/* index.css */
-#root {
-    padding: 2%;
-}
-
 /* Dark mode */
 body {
     font-family: Arial, sans-serif;
     background-color: #1e1e1e; /* Dark background color */
     color: #ffffff; /* Light text color */
-    margin: 2%;
+    margin: 0;
+}
+
+.body-container {
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 2%;
 }
 
 /* Rounded edges for all div elements */
