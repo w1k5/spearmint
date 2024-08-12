@@ -7,9 +7,7 @@ body {
 }
 
 .body-container {
-    margin-left: 4%;
-    margin-right: 4%;
-    margin-top: 2%;
+    margin: 2% 4% 120px;
 }
 
 /* Rounded edges for all div elements */
