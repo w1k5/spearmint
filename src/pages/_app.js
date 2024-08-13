@@ -5,6 +5,9 @@ import './dashboard.css';
 import Header from "../components/header/Header";
 import Head from "next/head";
 import Footer from "../components/footer/Footer";
+import nextConfig from "../../next.config.mjs";
+
+const baseUrl = nextConfig.assetPrefix;
 
 const App = ({ Component, pageProps }) => {
     return (
