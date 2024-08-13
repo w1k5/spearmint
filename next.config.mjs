@@ -2,7 +2,7 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
-    assetPrefix: isProd ? './' : '',
+    assetPrefix: isProd ? '/spearmint/' : '',
     output: 'export', // Outputs a Single-Page Application (SPA).
     distDir: './build', // Changes the build output directory to `./dist/`.
 }
