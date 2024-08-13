@@ -2,9 +2,9 @@
 import React from 'react';
 import './index.css';
 import './dashboard.css';
-import Header from "../components/headers_footers/Header";
+import Header from "../components/header/Header";
 import Head from "next/head";
-import Footer from "../components/headers_footers/Footer";
+import Footer from "../components/footer/Footer";
 
 const App = ({ Component, pageProps }) => {
     return (
