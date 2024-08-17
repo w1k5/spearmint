@@ -1,11 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import {Doughnut} from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip } from 'chart.js';
-import {formatAmount } from '../../utils/chart_utils';
+import { formatAmount } from '../../utils/chart_utils';
+
+// Register Chart.js components
+Chart.register(ArcElement, Tooltip);
+
+// Global plugin for center text
+Chart.register({
+    id: 'centerText',
+    beforeDraw: (chart) => {
+        if (chart.config.type === 'doughnut') {
+            const { ctx, chartArea: { top, bottom, left, right } } = chart;
+            const width = right - left;
+            const height = bottom - top;
+            const centerX = left + width / 2;
+            const centerY = top + height / 2;
+
+            const sum = chart.data.datasets[0].data.reduce((acc, value) => acc + value, 0);
+            const text = formatAmount(sum);
+
+            const fontSize = Math.min(width, height) / 12; // Adjust the divisor to fine-tune the size
+
+            ctx.save();
+            ctx.font = `bold ${fontSize}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = 'white';
+            ctx.fillText(text, centerX, centerY);
+            ctx.restore();
+        }
+    }
+});
 
 const DonutChart = ({ data }) => {
-    Chart.register(ArcElement, Tooltip);
-
     const [chartData, setChartData] = useState({ labels: [], datasets: [] });
 
     useEffect(() => {
@@ -68,7 +96,7 @@ const DonutChart = ({ data }) => {
                 <p>No expenses from chart data available.</p>
             ) : (
                 <div className="chart-wrapper">
-                    <Doughnut key={JSON.stringify(chartData)} data={chartData} options={options} />
+                    <Doughnut key={JSON.stringify(chartData)} data={chartData} options={options}/>
                 </div>
             )}
         </div>
