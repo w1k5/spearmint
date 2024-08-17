@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CategoryForm from './CategoryForm';
 import styles from '../../styles/categorymanager.module.css';
 import Modal from "../modal/Modal";
-import { saveCategory, getCategories, clearCategories } from '../db_utils';
+import { getCategories, clearCategories } from '../db_utils';
 
 const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave, onUpload }) => {
     const [showAddCategory, setShowAddCategory] = useState(false);
@@ -18,7 +18,7 @@ const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave, onUpload 
 
     const handleCategoryCreate = async (newCategory, stringMatch, matchType, selectedHeader, ignore) => {
         const newCat = { newCategory, stringMatch, matchType, selectedHeader, ignore };
-        setCategories([...categori3es, newCat]);
+        setCategories([...categories, newCat]);
         onCategoryCreate(newCategory, stringMatch, matchType, selectedHeader, ignore);
         setShowAddCategory(false); // Close add category form after creation
     };
