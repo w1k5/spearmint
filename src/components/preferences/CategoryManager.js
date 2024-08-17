@@ -18,8 +18,7 @@ const CategoryManager = ({ headers, onCategoryCreate, onClose, onSave, onUpload 
 
     const handleCategoryCreate = async (newCategory, stringMatch, matchType, selectedHeader, ignore) => {
         const newCat = { newCategory, stringMatch, matchType, selectedHeader, ignore };
-        await saveCategory(newCat);
-        setCategories([...categories, newCat]);
+        setCategories([...categori3es, newCat]);
         onCategoryCreate(newCategory, stringMatch, matchType, selectedHeader, ignore);
         setShowAddCategory(false); // Close add category form after creation
     };
