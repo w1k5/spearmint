@@ -85,8 +85,9 @@ const Home = () => {
                     case 'endsWith':
                         return item[cat.selectedHeader].toLowerCase().endsWith(cat.stringMatch.toLowerCase());
                     case 'contains':
-                    default:
                         return item[cat.selectedHeader].toLowerCase().includes(cat.stringMatch.toLowerCase());
+                    default:
+                        return false;
                 }
             });
             return matchedCategory ? { ...item, Category: matchedCategory.newCategory, Ignore: matchedCategory.ignore } : item;
