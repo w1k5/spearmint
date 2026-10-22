@@ -103,18 +103,33 @@ const FileUpload = ({ onFileUploaded }) => {
     return (
         <div>
             {!fileUploaded ? (
-                <div {...getRootProps()} className={styles.dropzone}>
+                <div {...getRootProps({ role: 'button', 'aria-label': 'Upload a CSV or Excel transaction file' })} className={styles.dropzone}>
                     <input {...getInputProps()} />
+                    <span className={styles.uploadIcon} aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                    </span>
                     {loading ? (
-                        <h1>Uploading...</h1>
+                        <div>
+                            <h3>Reading your file…</h3>
+                            <p>We’ll build your dashboard in a moment.</p>
+                        </div>
                     ) : (
-                        <h1>Drag 'n' drop some files here, or click to select files</h1>
+                        <div>
+                            <h3>Drop your transaction file here</h3>
+                            <p>or <span className={styles.browseText}>browse your files</span> · CSV or Excel</p>
+                        </div>
                     )}
                 </div>
             ) : (
                 <div className={styles.uploadStatus}>
-                    <h1>File uploaded successfully.</h1>
-                    <button onClick={resetUpload}>Clear data</button>
+                    <span className={styles.successIcon} aria-hidden="true">✓</span>
+                    <div>
+                        <h3>Your data is ready</h3>
+                        <p>The dashboard has been updated with your transactions.</p>
+                    </div>
+                    <button className="button button-secondary" onClick={resetUpload}>Choose another file</button>
                 </div>
             )}
         </div>

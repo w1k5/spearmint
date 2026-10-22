@@ -26,15 +26,31 @@ const Dashboard = ({ data }) => {
     return (
         <div className="dashboard-container">
             <div className="card full-width-card">
-                <h2>Expenses Over Time</h2>
+                <div className="card-heading">
+                    <div>
+                        <p className="card-kicker">Spending trend</p>
+                        <h3>Expenses over time</h3>
+                    </div>
+                </div>
                 <LineChart data={expenses}/>
             </div>
-            <div className="card">
-                <h2>Expense Breakdown</h2>
+            <div className="card donut-card">
+                <div className="card-heading">
+                    <div>
+                        <p className="card-kicker">By category</p>
+                        <h3>Expense breakdown</h3>
+                    </div>
+                </div>
                 <DonutChart data={expenses}/>
             </div>
-            <div className="card majority-card clickable-card" onClick={() => setIsModalOpen(true)}>
-                <h2>Data Table</h2>
+            <div className="card majority-card">
+                <div className="card-heading">
+                    <div>
+                        <p className="card-kicker">All activity</p>
+                        <h3>Transactions</h3>
+                    </div>
+                    <button className="text-button" onClick={() => setIsModalOpen(true)}>Expand table</button>
+                </div>
                 <div className="table-container">
                     <Table data={data}/>
                 </div>
@@ -45,11 +61,21 @@ const Dashboard = ({ data }) => {
                 </Modal>
             )}
             <div className="card majority-card">
-                <h2>Income Over Time</h2>
+                <div className="card-heading">
+                    <div>
+                        <p className="card-kicker">Earnings trend</p>
+                        <h3>Income over time</h3>
+                    </div>
+                </div>
                 <LineChart data={income}/>
             </div>
-            <div className="card">
-                <h2>Income Breakdown</h2>
+            <div className="card donut-card">
+                <div className="card-heading">
+                    <div>
+                        <p className="card-kicker">By category</p>
+                        <h3>Income breakdown</h3>
+                    </div>
+                </div>
                 <DonutChart data={income}/>
             </div>
         </div>

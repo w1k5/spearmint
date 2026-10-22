@@ -4,8 +4,10 @@ import styles from '../../styles/footer.module.css';
 const Footer = () => {
     return (
         <footer className={styles.footer}>
-            <p>© {new Date().getFullYear()} w1k5. All rights reserved.</p>
-            <p>Made with ❤️ by Victoria Michalska</p>
+            <div className={styles.footerInner}>
+                <p>© {new Date().getFullYear()} Spearmint</p>
+                <p>Made with care by Victoria Michalska</p>
+            </div>
         </footer>
     );
 };

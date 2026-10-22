@@ -1,24 +1,72 @@
 .tableContainer {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(4, 14, 11, 0.28);
 }
 
 .tableContents {
     width: 100%;
+    min-width: 680px;
     border-collapse: collapse;
     border-spacing: 0;
-    border-radius: 10px;
+    font-size: 0.84rem;
 }
 
-.tableTh, .tableTd {
-    padding: 10px;
+.tableTh,
+.tableTd {
+    padding: 0.85rem 0.9rem;
+    border-bottom: 1px solid rgba(54, 91, 76, 0.55);
     text-align: left;
-    border-bottom: 1px solid #ddd; /* Add border to separate rows */
+    line-height: 1.35;
 }
 
-@media screen and (max-width: 600px) {
-    .tableContainer {
-        font-size: xx-small;
+.tableTh {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #14261f;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tableTd {
+    color: #d7e4de;
+}
+
+.tableContents tbody tr {
+    transition: background-color 120ms ease;
+}
+
+.tableContents tbody tr:hover {
+    background: rgba(113, 232, 181, 0.05);
+}
+
+.tableContents tbody tr:last-child .tableTd {
+    border-bottom: 0;
+}
+
+.positiveAmount {
+    color: var(--mint);
+    font-variant-numeric: tabular-nums;
+}
+
+.negativeAmount {
+    color: #f0b4a8;
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 600px) {
+    .tableContents {
+        font-size: 0.8rem;
+    }
+
+    .tableTh,
+    .tableTd {
+        padding: 0.75rem;
     }
 }

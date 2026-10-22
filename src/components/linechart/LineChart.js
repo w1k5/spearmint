@@ -53,7 +53,15 @@ const LineChart = ({ data }) => {
             datasets: [{
                 label: 'Amount',
                 data: values,
-                borderColor: '#8884d8',
+                borderColor: '#71e8b5',
+                backgroundColor: 'rgba(113, 232, 181, 0.12)',
+                pointBackgroundColor: '#07110e',
+                pointBorderColor: '#71e8b5',
+                pointBorderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                borderWidth: 2,
+                tension: 0.25,
                 fill: false,
             }]
         });
@@ -64,34 +72,64 @@ const LineChart = ({ data }) => {
         maintainAspectRatio: false,
         scales: {
             x: {
+                border: {
+                    display: false,
+                },
+                grid: {
+                    color: 'rgba(157, 180, 170, 0.10)',
+                },
                 title: {
                     display: true,
                     text: 'Time Interval',
+                    color: '#9db4aa',
                     font: {
-                        size: 14,
+                        size: 12,
+                        weight: '600',
                     },
                 },
                 ticks: {
                     autoSkip: true,
                     maxTicksLimit: 10,
+                    color: '#9db4aa',
+                    font: {
+                        size: 11,
+                    },
                 },
 		    reverse: false,
             },
             y: {
+                border: {
+                    display: false,
+                },
+                grid: {
+                    color: 'rgba(157, 180, 170, 0.10)',
+                },
                 title: {
                     display: true,
                     text: 'Amount',
+                    color: '#9db4aa',
                     font: {
-                        size: 14,
+                        size: 12,
+                        weight: '600',
                     },
                 },
                 ticks: {
                     beginAtZero: false,
+                    color: '#9db4aa',
+                    font: {
+                        size: 11,
+                    },
                 },
             },
         },
         plugins: {
             tooltip: {
+                backgroundColor: '#07110e',
+                borderColor: '#365b4c',
+                borderWidth: 1,
+                titleColor: '#f2f8f5',
+                bodyColor: '#d7e4de',
+                padding: 10,
                 callbacks: {
                     label: function (context) {
                         let value = context.raw;
@@ -118,13 +156,19 @@ const LineChart = ({ data }) => {
                 annotations: {
                     avg: {
                         type: 'line',
-                        borderColor: 'black',
+                        borderColor: '#f4bf61',
                         borderDash: [6, 6],
                         borderDashOffset: 0,
-                        borderWidth: 3,
+                        borderWidth: 2,
                         label: {
                             position: 'center',
                             display: true,
+                            backgroundColor: '#f4bf61',
+                            color: '#07110e',
+                            font: {
+                                size: 11,
+                                weight: '700',
+                            },
                             content: (ctx) => 'Average: ' + formatAmount(average(ctx).toFixed(2))
                         },
                         scaleID: 'y',

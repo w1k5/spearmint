@@ -1,66 +1,99 @@
-/* Dashboard.css */
 .dashboard-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 .card {
-    background: #333333;
-    flex: 1 1;
-    padding: 2%;
-    width: 100%;
-    min-height: 40vh;
-    max-height: 50vh;
-}
-
-.card-container {
+    grid-column: span 4;
+    min-width: 0;
+    padding: clamp(1.1rem, 2vw, 1.5rem);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(21, 41, 33, 0.96), rgba(12, 27, 22, 0.96));
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.16);
 }
 
 .full-width-card {
-    flex: 1 1 100%;
+    grid-column: 1 / -1;
 }
 
 .majority-card {
-    flex: 1 1 45%;
-    overflow: hidden; /* Hide overflow */
+    grid-column: span 8;
+}
+
+.donut-card {
+    grid-column: span 4;
+}
+
+.card-heading {
+    min-height: 50px;
+    margin-bottom: 1.25rem;
+}
+
+.card-heading h3 {
+    font-size: 1.2rem;
+}
+
+.card-kicker {
+    margin-bottom: 0.35rem;
+    color: var(--text-subtle);
+    font-size: 0.68rem;
 }
 
 .table-container {
-    position: relative;
-    height: 100%; /* Fill parent height */
     width: 100%;
-}
-
-.clickable-card {
-    cursor: pointer;
-    transition: transform 1s, box-shadow 1s;
-}
-
-.clickable-card:hover, .clickable-card:active, .clickable-card.touch-active {
-    transform: scale(1.05);
-    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.2);
-}
-
-@media (hover: none) {
-    .clickable-card:active {
-        transform: scale(1.05);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+    max-height: 360px;
+    overflow: auto;
 }
 
 .chart-wrapper {
-    min-height: 30vh;
-    max-height: 40vh;
+    position: relative;
     display: flex;
-    justify-content: center;
+    width: 100%;
+    min-height: 300px;
     align-items: center;
+    justify-content: center;
 }
 
-/* Media Query for narrow screens */
-@media screen and (max-width: 600px) {
-    .card, .full-width-card, .majority-card {
-        width: 100%;
-        padding: 5%;
+.donut-card .chart-wrapper {
+    min-height: 320px;
+}
+
+.chart-wrapper > .chart-wrapper {
+    min-height: inherit;
+}
+
+@media (max-width: 900px) {
+    .majority-card,
+    .donut-card,
+    .card {
+        grid-column: 1 / -1;
+    }
+
+    .chart-wrapper,
+    .donut-card .chart-wrapper {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-container {
+        gap: 0.75rem;
+    }
+
+    .card {
+        padding: 1rem;
+        border-radius: 14px;
+    }
+
+    .card-heading {
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .chart-wrapper,
+    .donut-card .chart-wrapper {
+        min-height: 260px;
     }
 }

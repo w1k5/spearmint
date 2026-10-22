@@ -6,7 +6,7 @@ const Modal = ({ children, onClose }) => {
     return (
         <div className={styles.modalBackdrop} onClick={onClose}>
             <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                <button className={styles.modalClose} onClick={onClose}>Χ</button>
+                <button className={styles.modalClose} onClick={onClose} aria-label="Close dialog">×</button>
                 {children}
             </div>
         </div>

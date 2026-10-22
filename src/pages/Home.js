@@ -109,16 +109,28 @@ const Home = () => {
     };
 
     return (
-        <div className="body-container">
-            <h1>Dashboard Overview</h1>
-            <div>
-                <h2>Upload Your Data</h2>
-                <FileUpload onFileUploaded={handleFileUploaded} />
-            </div>
+        <main className="body-container">
+            <section className="hero" aria-labelledby="page-title">
+                <p className="eyebrow">Your financial snapshot</p>
+                <h1 id="page-title">Dashboard overview</h1>
+                <p className="hero-copy">Turn a transaction export into a clear, private view of your income and spending.</p>
+            </section>
 
-            <div>
+            <section className="section upload-section" aria-labelledby="upload-heading">
+                <div className="section-heading">
+                    <div>
+                        <p className="section-kicker">Import</p>
+                        <h2 id="upload-heading">Upload your data</h2>
+                    </div>
+                    <span className="status-pill">CSV &amp; Excel</span>
+                </div>
+                <FileUpload onFileUploaded={handleFileUploaded} />
                 {data.length > 0 && (
-                    <button onClick={() => setShowCategoryManager(true)}>Open Category Manager</button>
+                    <div className="section-actions">
+                        <button className="button button-secondary" onClick={() => setShowCategoryManager(true)}>
+                            Manage categories
+                        </button>
+                    </div>
                 )}
                 {showCategoryManager && (
                     <CategoryManager
@@ -130,29 +142,40 @@ const Home = () => {
                         onUpload={handleUploadSettings}
                     />
                 )}
-            </div>
+            </section>
 
-            <div>
-                <h2>Quick View: Reports</h2>
+            <section className="section reports-section" aria-labelledby="reports-heading">
+                <div className="section-heading">
+                    <div>
+                        <p className="section-kicker">Insights</p>
+                        <h2 id="reports-heading">Reports</h2>
+                    </div>
+                    {data.length > 0 && <span className="status-pill status-pill-live">Live overview</span>}
+                </div>
                 {loading ? (
                     <DashboardSkeleton />
                 ) : data.length ? (
                     <Dashboard data={includedEntries} />
                 ) : (
-                    <>
-                        <p>No data available. Please upload a file to view reports.</p>
+                    <div className="empty-state">
+                        <div>
+                            <h3>Your reports will appear here</h3>
+                            <p>Upload a transaction file, or use the sample data to preview the dashboard.</p>
+                        </div>
                         <DashboardSkeleton />
-                    </>
+                    </div>
                 )}
-            </div>
+            </section>
 
-            <button onClick={() => handleFileUploaded(testData)}>
-                Use Test Data
-            </button>
-            <button onClick={handleClearData}>
-                Clear Data
-            </button>
-        </div>
+            <div className="page-actions" aria-label="Dashboard actions">
+                <button className="button button-primary" onClick={() => handleFileUploaded(testData)}>
+                    Load sample data
+                </button>
+                <button className="button button-ghost" onClick={handleClearData}>
+                    Clear data
+                </button>
+            </div>
+        </main>
     );
 };
 
