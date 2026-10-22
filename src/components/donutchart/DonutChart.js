@@ -23,10 +23,10 @@ Chart.register({
             const fontSize = Math.min(width, height) / 12; // Adjust the divisor to fine-tune the size
 
             ctx.save();
-            ctx.font = `bold ${fontSize}px Arial`;
+            ctx.font = `700 ${fontSize}px Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = '#f2f8f5';
             ctx.fillText(text, centerX, centerY);
             ctx.restore();
         }
@@ -59,7 +59,7 @@ const DonutChart = ({ data }) => {
         }));
 
         // Define colors for the chart
-        const colors = ['#8884d8', '#83a6ed', '#8dd1e1', '#82ca9d', '#a4de6c', '#d0ed57', '#ffc658', '#ff7f0e', '#ff6b01', '#e86a92'];
+        const colors = ['#71e8b5', '#7db7f0', '#c8a8ff', '#f4bf61', '#e58f8f', '#74c9d6', '#b6dc7a', '#dd9ed2', '#a9b6c8', '#ed9d68'];
 
         const updatedChartData = {
             labels: breakdownData.map(entry => entry.name),
@@ -67,6 +67,9 @@ const DonutChart = ({ data }) => {
                 data: breakdownData.map(entry => entry.value),
                 backgroundColor: colors.slice(0, breakdownData.length), // Use only as many colors as there are data entries
                 hoverBackgroundColor: colors.slice(0, breakdownData.length),
+                borderColor: '#10201a',
+                borderWidth: 3,
+                hoverOffset: 5,
             }]
         };
 
@@ -76,9 +79,30 @@ const DonutChart = ({ data }) => {
 
     const options = {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
+        cutout: '67%',
         plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: '#b8cbc2',
+                    boxWidth: 10,
+                    boxHeight: 10,
+                    padding: 14,
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    font: {
+                        size: 11,
+                    },
+                },
+            },
             tooltip: {
+                backgroundColor: '#07110e',
+                borderColor: '#365b4c',
+                borderWidth: 1,
+                titleColor: '#f2f8f5',
+                bodyColor: '#d7e4de',
+                padding: 10,
                 callbacks: {
                     label: function (context) {
                         if (context.raw !== null) {

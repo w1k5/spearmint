@@ -1,13 +1,13 @@
 // DashboardSkeleton.js
 import React from 'react';
-import '../../styles/skeleton.module.css';
+import styles from '../../styles/skeleton.module.css';
 
 const DashboardSkeleton = () => {
     return (
-        <div className="dashboard-container dashboard-skeleton">
-            <div className="skeleton skeleton-chart"></div>
-            <div className="skeleton skeleton-chart"></div>
-            <div className="skeleton skeleton-chart"></div>
+        <div className="dashboard-container">
+            <div className={`${styles.skeleton} full-width-card`}></div>
+            <div className={`${styles.skeleton} donut-card`}></div>
+            <div className={`${styles.skeleton} majority-card`}></div>
         </div>
     );
 };

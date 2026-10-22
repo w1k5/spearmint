@@ -9,7 +9,7 @@ const Table = ({ data }) => {
 
     return (
         <div className={styles.tableContainer}>
-            <table className={styles.tableContents}>
+            <table className={styles.tableContents} aria-label="Transaction data">
                 <thead>
                 <tr>
                     <th className={styles.tableTh}>Date</th>
@@ -22,7 +22,9 @@ const Table = ({ data }) => {
                 {data.map((entry, index) => (
                     <tr key={index}>
                         <td className={styles.tableTd}>{entry.date || entry.Date}</td>
-                        <td className={styles.tableTd}>{formatAmount(entry.amount || entry.Amount)}</td>
+                        <td className={`${styles.tableTd} ${Number(entry.amount || entry.Amount) >= 0 ? styles.positiveAmount : styles.negativeAmount}`}>
+                            {formatAmount(entry.amount || entry.Amount)}
+                        </td>
                         <td className={styles.tableTd}>{entry.category || entry.Category}</td>
                         <td className={styles.tableTd}>{entry.description || entry.Description}</td>
                     </tr>

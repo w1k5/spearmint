@@ -1,35 +1,101 @@
 .categoryList {
-    margin-bottom: 20px;
-    max-height: 300px; /* Example height; adjust as needed */
+    display: grid;
+    max-height: 280px;
+    margin: 1.5rem 0;
+    gap: 0.5rem;
     overflow-y: auto;
 }
 
 .categoryItem {
-    margin-bottom: 10px;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-soft);
+    color: var(--text-muted);
+    font-size: 0.86rem;
+    text-align: left;
 }
 
 .categoryManagerButtons {
     display: flex;
+    margin-top: 1rem;
     justify-content: flex-end;
-    margin-top: 20px;
+    gap: 0.5rem;
 }
 
-.categoryManagerButtons button {
-    width: 20%;
+.categoryManagerButtons button,
+.uploadButton {
+    width: auto;
 }
 
 .uploadButton {
-    display: block;
-    margin: 10px auto;
-    background-color: #474747;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+    display: inline-flex;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    align-items: center;
+    border: 1px solid var(--border-strong);
     border-radius: 10px;
-    width: 20%;
+    background: var(--surface-strong);
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
 }
 
-.uploadButton:hover {
+.categoryForm {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0;
+    text-align: left;
+}
+
+.field,
+.checkboxField {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.field label,
+.checkboxField label {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 9px;
+    background: var(--surface-soft);
+    color: var(--text);
+}
+
+.checkboxField {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+
+.formAction {
+    display: flex;
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+}
+
+@media (max-width: 640px) {
+    .categoryManagerButtons,
+    .categoryForm {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .categoryManagerButtons button,
+    .uploadButton {
+        width: 100%;
+        justify-content: center;
+    }
 }
